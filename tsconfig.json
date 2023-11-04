@@ -6,6 +6,7 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
+      "@src/screens": ["src/screens"],
     }
   },
 }
