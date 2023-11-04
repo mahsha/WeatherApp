@@ -63,6 +63,7 @@ module.exports = {
                 },
             },
         ],
+        'import/prefer-default-export': 'off',
         'import/no-extraneous-dependencies': 'off',
         '@typescript-eslint/consistent-type-definitions': 'off',
         'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],

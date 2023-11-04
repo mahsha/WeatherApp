@@ -1,16 +1,21 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { MainStackNavigator } from '@src/navigation';
 
+const queryClient = new QueryClient();
+
 function App(): JSX.Element {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <MainStackNavigator />
-      </NavigationContainer>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <MainStackNavigator />
+        </NavigationContainer>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }
