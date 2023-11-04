@@ -1,7 +1,7 @@
 import { type RouteProp } from '@react-navigation/native';
 import { type NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import type AppRoute from './routes';
+import type AppRoute from '../routes';
 
 export type IMainParamList = {
   [AppRoute.HomeScreen]: undefined;

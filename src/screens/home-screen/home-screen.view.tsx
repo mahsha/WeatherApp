@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { View } from 'react-native';
+
+import { MainView } from './home-screen.styles';
 
 function HomeScreenView(): JSX.Element {
-  return <View />;
+  return <MainView />;
 }
 
 export default HomeScreenView;
