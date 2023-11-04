@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '@src/screens';
 
 import { type IMainParamList } from './main-navigator.types';
-import AppRoute from './routes';
+import AppRoute from '../routes';
 
 const MainStack = createStackNavigator<IMainParamList>();
 function MainStackNavigator(): JSX.Element {

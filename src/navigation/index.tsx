@@ -1,2 +1,2 @@
-export { default as MainNavigator } from './main-navigator';
-export * from './main-navigator.types';
+export { MainStackNavigator } from './main-navigator';
+export { default as AppRoute } from './routes';
