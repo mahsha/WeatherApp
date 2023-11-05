@@ -12,6 +12,9 @@
       "@src/assets": ["src/assets"],
       "@src/res": ["src/res"],
       "@src/utils": ["src/utils"],
+      "@src/network": ["src/network"],
+      "@src/models": ["src/models"],
+      "@src/queries": ["src/queries"],
     }
   },
 }
