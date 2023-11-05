@@ -7,13 +7,32 @@ import { hp } from '@src/utils';
 export const Screen = styled(SafeAreaView).attrs({
   edges: ['top', 'bottom'],
 })`
-    flex: 1;
-    margin-top: ${hp(R.spacing.xMedium)}px;
+  flex: 1;
+  margin-top: ${hp(R.spacing.xMedium)}px;
 `;
 
 export const MainView = styled.View`
-    flex: 1;
-    background-color: ${R.color.colors.blue};
-    align-items: 'center';
-    justify-content: 'center';
+  flex: 1;
+  padding: ${R.spacing.xSmall}px;
+`;
+
+export const Container = styled.View`
+  flex: 1;
+  align-self: 'stretch';
+  width: 100%;
+`;
+
+export const StyledButton = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: ${R.color.colors.blue};
+  height: ${hp(R.spacing.massive)}px;
+  margin-top: ${hp(R.spacing.xMedium)}px;
+  border-radius: ${hp(R.spacing.xMedium)}px;
+`;
+
+export const SearchButtonText = styled.Text`
+  font-size: ${R.fontSize.medium}px;
+  color: ${R.color.colors.white};
 `;
