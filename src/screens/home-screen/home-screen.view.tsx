@@ -3,11 +3,15 @@ import { useCallback } from 'react';
 
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 
-import { FormInput, KeyboardAvoidingView } from '@src/atoms';
+import { ActivityIndicator, FormInput, KeyboardAvoidingView } from '@src/atoms';
 import { R } from '@src/res';
 
 import {
-  Container, MainView, SearchButtonText, StyledButton,
+  Container,
+  ErrorText,
+  MainView,
+  SearchButtonText,
+  StyledButton,
 } from './home-screen.styles';
 import { type FormValues, type HomeScreenViewProps } from './home-screen.types';
 
@@ -40,10 +44,10 @@ function HomeScreenView({
       return <MainView />;
     }
     if (isLoading) {
-      return <MainView />;
+      return <ActivityIndicator />;
     }
     if (data != null) {
-      return <MainView />;
+      return <ErrorText>{R.string.homeScreen.apiError}</ErrorText>;
     }
     return null;
   }, [data, error, isLoading]);
