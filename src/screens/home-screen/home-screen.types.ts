@@ -5,3 +5,7 @@ export interface HomeScreenViewProps {
   isLoading: boolean;
   error: Error | null;
 }
+export interface FormValues {
+  city: string;
+  numberOfDays: string;
+}

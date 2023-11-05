@@ -28,6 +28,7 @@ module.exports = {
           '@src/network': './src/network',
           '@src/models': './src/models',
           '@src/queries': './src/queries',
+          '@src/atoms': './src/atoms',
         },
       },
     ],
