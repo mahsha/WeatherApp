@@ -36,3 +36,11 @@ export const SearchButtonText = styled.Text`
   font-size: ${R.fontSize.medium}px;
   color: ${R.color.colors.white};
 `;
+
+export const ErrorText = styled.Text`
+  font-size: ${R.fontSize.medium}px;
+  color: ${R.color.colors.red};
+  text-align: center;
+  width: 100%;
+  padding: ${R.spacing.xSmall}px;
+`;

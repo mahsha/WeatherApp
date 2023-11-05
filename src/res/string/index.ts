@@ -3,6 +3,7 @@ const string = Object.freeze({
     search: 'search',
     cityError: 'Please Enter a city',
     numberOfDaysError: 'Please Enter number of days',
+    apiError: 'Something wrong happen',
   },
 });
 
