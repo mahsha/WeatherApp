@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useCallback } from 'react';
+import { ScrollView } from 'react-native';
 
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 
@@ -105,10 +106,12 @@ function HomeScreenView({
 
   return (
     <MainView>
-      <KeyboardAvoidingView>
-        <Container>{renderState()}</Container>
-        <Container>{renderTextFields()}</Container>
-      </KeyboardAvoidingView>
+      <ScrollView>
+        <KeyboardAvoidingView>
+          <Container>{renderState()}</Container>
+          <Container>{renderTextFields()}</Container>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </MainView>
   );
 }
