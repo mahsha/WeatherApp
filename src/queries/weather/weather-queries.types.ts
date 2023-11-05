@@ -1,4 +1,8 @@
-export default interface IFetchWeatherForecast {
-  country: string;
+export interface IFetchWeatherForecast {
+  city: string;
   numberOfDays?: number;
+}
+
+export interface IFetchWeatherForecastQuery {
+  enabled: boolean;
 }

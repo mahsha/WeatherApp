@@ -11,10 +11,14 @@ import {
 } from './home-screen.styles';
 import { type FormValues, type HomeScreenViewProps } from './home-screen.types';
 
-function HomeScreenView({ isLoading, data, error }: HomeScreenViewProps): JSX.Element {
+function HomeScreenView({
+  isLoading,
+  data,
+  error,
+  onChangeSearchParams,
+}: HomeScreenViewProps): JSX.Element {
   const FIELDS = {
     city: 'city',
-    numberOfDays: 'numberOfDays',
   };
 
   const formMethods = useForm<FormValues>({
@@ -24,7 +28,12 @@ function HomeScreenView({ isLoading, data, error }: HomeScreenViewProps): JSX.El
 
   const { handleSubmit } = formMethods;
 
-  const onSubmit: SubmitHandler<FormValues> = useCallback(() => {}, []);
+  const onSubmit: SubmitHandler<FormValues> = useCallback(
+    ({ city }) => {
+      onChangeSearchParams({ city });
+    },
+    [onChangeSearchParams],
+  );
 
   const renderState = useCallback(() => {
     if (error != null) {
@@ -44,11 +53,6 @@ function HomeScreenView({ isLoading, data, error }: HomeScreenViewProps): JSX.El
       <Container>
         <FormProvider {...formMethods}>
           <FormInput rules={{ required: 'Please Enter a city' }} name={FIELDS.city} />
-          <FormInput
-            rules={{ required: 'Please Enter number of days' }}
-            keyboardType="number-pad"
-            name={FIELDS.numberOfDays}
-          />
         </FormProvider>
         <StyledButton
           onPress={(event) => {
@@ -59,7 +63,7 @@ function HomeScreenView({ isLoading, data, error }: HomeScreenViewProps): JSX.El
         </StyledButton>
       </Container>
     ),
-    [FIELDS.city, FIELDS.numberOfDays, formMethods, handleSubmit, onSubmit],
+    [FIELDS.city, formMethods, handleSubmit, onSubmit],
   );
 
   return (

@@ -4,17 +4,20 @@ import { type AxiosResponse } from 'axios';
 import { type ForecastResult } from '@src/models';
 import { api, endpoints } from '@src/network';
 
-import type IFetchWeatherForecast from './weather-queries.types';
+import {
+  type IFetchWeatherForecast,
+  type IFetchWeatherForecastQuery,
+} from './weather-queries.types';
 
 const fetchWeatherForecast = async ({
-  country,
-  numberOfDays = 5,
+  city,
+  numberOfDays = 1,
 }: IFetchWeatherForecast): Promise<ForecastResult> => {
   const response = await api.client.get<unknown, AxiosResponse<ForecastResult, unknown>>(
     endpoints.forecast,
     {
       params: {
-        q: country,
+        q: city,
         days: numberOfDays,
       },
     },
@@ -23,11 +26,13 @@ const fetchWeatherForecast = async ({
 };
 
 const useWeatherForecastQuery = <T>({
-  country,
-  numberOfDays = 5,
-}: IFetchWeatherForecast): UseQueryResult<T> => useQuery({
-    queryKey: ['WeatherForecast', country, numberOfDays],
-    queryFn: async () => fetchWeatherForecast({ country, numberOfDays }),
+  city,
+  numberOfDays = 1,
+  enabled,
+}: IFetchWeatherForecastQuery & IFetchWeatherForecast): UseQueryResult<T> => useQuery({
+    queryKey: ['WeatherForecast', city, numberOfDays],
+    queryFn: async () => fetchWeatherForecast({ city, numberOfDays }),
+    enabled,
   });
 
 export default useWeatherForecastQuery;
