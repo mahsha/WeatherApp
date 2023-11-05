@@ -12,6 +12,7 @@ export class Api {
     this.client = axios.create({
       baseURL: this.config.url,
       timeout: this.config.minimumTimeout,
+      params: { key: this.config.apiKey },
     });
   }
 }

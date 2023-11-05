@@ -6,6 +6,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { MainStackNavigator } from '@src/navigation';
 
+import 'react-native-gesture-handler';
+
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
