@@ -9,7 +9,10 @@ import { R } from '@src/res';
 import {
   Container,
   ErrorText,
+  IconImage,
   MainView,
+  ParamsText,
+  Row,
   SearchButtonText,
   StyledButton,
 } from './home-screen.styles';
@@ -20,6 +23,7 @@ function HomeScreenView({
   data,
   error,
   onChangeSearchParams,
+  parseForecastDay,
 }: HomeScreenViewProps): JSX.Element {
   const FIELDS = {
     city: 'city',
@@ -39,18 +43,47 @@ function HomeScreenView({
     [onChangeSearchParams],
   );
 
+  const renderValues = (title: string, value: string): JSX.Element => (
+    <Row>
+      <ParamsText>{title}</ParamsText>
+      <ParamsText>{value}</ParamsText>
+    </Row>
+  );
+
+  const renderMainContainer = useCallback(() => {
+    if (data == null) {
+      return null;
+    }
+    return (
+      <Container>
+        {renderValues(R.string.homeScreen.country, data.location.country)}
+        {renderValues(R.string.homeScreen.city, data.location.name)}
+        {renderValues(R.string.homeScreen.weatherCondition, data.current.condition.text)}
+        <IconImage
+          source={{
+            uri: `https:${data.current.condition.icon}`,
+          }}
+        />
+        {parseForecastDay(data.forecast.forecastday).map((value) => (
+          <Row key={value.time}>
+            <ParamsText>{value.time}</ParamsText>
+            <ParamsText>{value.temp_c}</ParamsText>
+            <ParamsText>{value.condition}</ParamsText>
+          </Row>
+        ))}
+      </Container>
+    );
+  }, [data, parseForecastDay]);
+
   const renderState = useCallback(() => {
     if (error != null) {
-      return <MainView />;
+      return <ErrorText>{R.string.homeScreen.apiError}</ErrorText>;
     }
     if (isLoading) {
       return <ActivityIndicator />;
     }
-    if (data != null) {
-      return <ErrorText>{R.string.homeScreen.apiError}</ErrorText>;
-    }
-    return null;
-  }, [data, error, isLoading]);
+    return renderMainContainer();
+  }, [error, isLoading, renderMainContainer]);
 
   const renderTextFields = useCallback(
     () => (
@@ -73,8 +106,8 @@ function HomeScreenView({
   return (
     <MainView>
       <KeyboardAvoidingView>
-        {renderState()}
-        {renderTextFields()}
+        <Container>{renderState()}</Container>
+        <Container>{renderTextFields()}</Container>
       </KeyboardAvoidingView>
     </MainView>
   );
