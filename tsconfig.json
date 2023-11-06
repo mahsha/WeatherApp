@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "types": ["@types/jest"],
     "allowJs": false,
     "strict": true,
     "noImplicitAny": true,
@@ -15,7 +16,7 @@
       "@src/network": ["src/network"],
       "@src/models": ["src/models"],
       "@src/queries": ["src/queries"],
-      "@src/atoms": ["src/atoms"],
+      "@src/atoms": ["src/atoms"]
     }
-  },
+  }
 }

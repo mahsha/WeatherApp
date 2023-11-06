@@ -10,4 +10,5 @@ export interface TextFieldProps {
   onChange: (text: string) => void;
   keyboardType?: KeyboardTypeOptions;
   onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  testID: string;
 }

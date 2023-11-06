@@ -15,6 +15,7 @@ function FormInput({
   rules,
   defaultValue,
   keyboardType,
+  testID,
 }: UseControllerProps<FieldValues, string> & InputFormProps): JSX.Element {
   const formContext = useFormContext();
   const {
@@ -32,6 +33,7 @@ function FormInput({
 
   return (
     <TextField
+      testID={testID}
       error={error}
       onChange={field.onChange}
       onBlur={field.onBlur}

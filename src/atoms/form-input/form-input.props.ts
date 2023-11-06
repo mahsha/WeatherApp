@@ -4,4 +4,5 @@ export interface InputFormProps {
   name: string;
   defaultValue?: string;
   keyboardType?: KeyboardTypeOptions;
+  testID: string;
 }
