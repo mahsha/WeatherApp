@@ -7,7 +7,7 @@
     "baseUrl": ".",
     "typeRoots": ["./src/types"],
     "paths": {
-      "@src/screens": ["src/screens"],
+      "@src/screens/*": ["src/screens/*"],
       "@src/navigation": ["src/navigation"],
       "@src/assets": ["src/assets"],
       "@src/res": ["src/res"],

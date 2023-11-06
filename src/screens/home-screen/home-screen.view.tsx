@@ -7,13 +7,11 @@ import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 import { ActivityIndicator, FormInput, KeyboardAvoidingView } from '@src/atoms';
 import { R } from '@src/res';
 
+import { ForecastCard } from './components';
 import {
   Container,
   ErrorText,
-  IconImage,
   MainView,
-  ParamsText,
-  Row,
   SearchButtonText,
   StyledButton,
 } from './home-screen.styles';
@@ -44,34 +42,19 @@ function HomeScreenView({
     [onChangeSearchParams],
   );
 
-  const renderValues = (title: string, value: string): JSX.Element => (
-    <Row>
-      <ParamsText>{title}</ParamsText>
-      <ParamsText>{value}</ParamsText>
-    </Row>
-  );
-
   const renderMainContainer = useCallback(() => {
     if (data == null) {
       return null;
     }
     return (
       <Container>
-        {renderValues(R.string.homeScreen.country, data.location.country)}
-        {renderValues(R.string.homeScreen.city, data.location.name)}
-        {renderValues(R.string.homeScreen.weatherCondition, data.current.condition.text)}
-        <IconImage
-          source={{
-            uri: `https:${data.current.condition.icon}`,
-          }}
+        <ForecastCard
+          hourlyData={parseForecastDay(data.forecast.forecastday)}
+          condition={data.current.condition.text}
+          country={data.location.country}
+          city={data.location.name}
+          icon={data.current.condition.icon}
         />
-        {parseForecastDay(data.forecast.forecastday).map((value) => (
-          <Row key={value.time}>
-            <ParamsText>{value.time}</ParamsText>
-            <ParamsText>{value.temp_c}</ParamsText>
-            <ParamsText>{value.condition}</ParamsText>
-          </Row>
-        ))}
       </Container>
     );
   }, [data, parseForecastDay]);
