@@ -47,7 +47,7 @@ function HomeScreenView({
       return null;
     }
     return (
-      <Container>
+      <Container testID={R.testId.homeScreen.data}>
         <ForecastCard
           hourlyData={parseForecastDay(data.forecast.forecastday)}
           condition={data.current.condition.text}
@@ -61,10 +61,12 @@ function HomeScreenView({
 
   const renderState = useCallback(() => {
     if (error != null) {
-      return <ErrorText>{R.string.homeScreen.apiError}</ErrorText>;
+      return (
+        <ErrorText testID={R.testId.homeScreen.error}>{R.string.homeScreen.apiError}</ErrorText>
+      );
     }
     if (isLoading) {
-      return <ActivityIndicator />;
+      return <ActivityIndicator testID={R.testId.homeScreen.loading} />;
     }
     return renderMainContainer();
   }, [error, isLoading, renderMainContainer]);
@@ -73,9 +75,14 @@ function HomeScreenView({
     () => (
       <Container>
         <FormProvider {...formMethods}>
-          <FormInput rules={{ required: 'Please Enter a city' }} name={FIELDS.city} />
+          <FormInput
+            rules={{ required: 'Please Enter a city' }}
+            name={FIELDS.city}
+            testID={R.testId.homeScreen.cityInput}
+          />
         </FormProvider>
         <StyledButton
+          testID={R.testId.homeScreen.searchButton}
           onPress={(event) => {
             void handleSubmit(onSubmit)(event);
           }}

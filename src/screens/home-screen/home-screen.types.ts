@@ -5,7 +5,6 @@ export interface HourlyConditions {
   time: string;
   temp_c: number;
   condition: string;
-  icon: string;
 }
 
 export interface HomeScreenViewProps {
